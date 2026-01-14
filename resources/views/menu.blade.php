@@ -29,7 +29,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 justify-center">
                  @foreach($categoryProducts as $product)
-                    <div class="flex rounded overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white h-64 w-full max-w-5xl mx-auto">
+                    <div class="flex rounded-md overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white h-64 w-full max-w-5xl mx-auto">
                         
                         <div class="flex-shrink-0 w-64 h-full">
                             <img class="w-full h-full object-cover" src="{{ $product->image_url }}" alt="{{ $product->name }}">
