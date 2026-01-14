@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\MenuItems;
+use App\Models\Product;
 class MenuController extends Controller
 {
     public function index()
     {
-        $menuItems = MenuItems::all();
-
-        return view("menu", compact("menuItems"));
+       $products = Product::with('category')
+            ->get()
+            ->groupBy(fn ($product) => $product->category->name);
+    
+        return view("menu", compact("products"));
     }
 }

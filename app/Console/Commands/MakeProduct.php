@@ -2,17 +2,18 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Http\Request;
 use Illuminate\Console\Command;
 
-use App\Models\MenuItems;
-class MakeMenuItem extends Command
+use App\Models\{Product, ProductCategory};
+class MakeProduct extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:menu-item';
+    protected $signature = 'make:product';
 
     /**
      * The console command description.
@@ -30,12 +31,22 @@ class MakeMenuItem extends Command
         $description = $this->ask('Item description?');
         $price = $this->ask('Price of item?');
         $imageUrl = $this->ask('Image url?');
+        $categorySlug = $this->ask('Category slug? In slug form (eg. french-bread)');
 
-        $menuItem = MenuItems::create([
+        $category = ProductCategory::where('slug', $categorySlug)->first();
+
+        if (! $category) {
+            $this->error("Category with slug '{$categorySlug}' not found.");
+            return Command::FAILURE;
+        }
+
+
+        $menuItem = Product::create([
             'name' => $name,
             'description' => $description,
             'price' => $price,
             'image_url' => $imageUrl,
+            'category_id' => $category->id
         ]);
 
         $this->info("Menu item '{$menuItem->name}' created successfully!");

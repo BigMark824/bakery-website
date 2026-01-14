@@ -23,3 +23,4 @@ To then add menu items you can use the command
 # TODO
 - Staff Panel (e.g for adding menu items etc)
 - Add an online ordering system
+- Make the overall site mobile responsive
