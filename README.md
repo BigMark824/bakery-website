@@ -18,7 +18,7 @@ First we setup the database
 
 To then add menu items you can use the command
 
-```php artisan make:menu-item```
+```php artisan make:product```
 
 # TODO
 - Staff Panel (e.g for adding menu items etc)
